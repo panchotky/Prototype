@@ -1,0 +1,65 @@
+<h1>ここにフォームを表示します</h1>
+
+<!-- 親のフォーム欄記述 -->
+  <%= form_for(@item) do |f| %>
+    <%= f.label 'CD名' %><br>
+    <%= f.text_field :name %>
+
+
+  <div class='disc-form'>
+    <!-- 子のモデルを指定 -->
+    <%= f.fields_for :discs do |builder| %>
+      <!-- フォーム欄を別で用意しrenderで指定　モデル名_fields -->
+      <%= render 'disc_fields', f: builder %>
+    <% end %>
+
+      <!-- 子モデルのフォームを追加する -->
+      <div id="links">
+      <%= link_to_add_association "add discs", f, :discs %><br/>
+      </div>
+
+  </div>
+
+  <%= f.submit 'Create CD' %><br>
+
+
+
+  <%= f.label :CDを選択 %><br>
+  <!-- 選択フォームの表示 -->
+  <%= f.select :id, Item.order(:name).map { |g| [g.name, g.id] }, include_blank: true %>
+
+
+
+ <% end %>
+
+
+<h1>Item一覧</h1>
+
+  <% @items.each do |item| %>
+
+    <p><%= item.name %>
+       <%= item.id %></p>
+
+  <% end %>
+
+
+<h1>Disc一覧</h1>
+
+  <% @discs.each do |disc| %>
+
+    <p><%= disc.number %>
+       <%= disc.item_id %>
+       <%= disc.id %>
+       </p>
+
+  <% end %>
+
+
+<h1>曲名一覧</h1>
+
+  <% @songs.each do |song| %>
+
+    <p><%= song.name %>
+       <%= song.disc_id %></p>
+
+  <% end %>

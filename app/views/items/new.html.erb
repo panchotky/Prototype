@@ -20,7 +20,7 @@
 
   </div>
 
-  <%= f.submit 'Create CD' %><br>
+  <%= f.submit 'Create CD' %><br><br><br>
 
 
 
@@ -39,6 +39,8 @@
 
     <p><%= item.name %>
        <%= item.id %></p>
+    <%= link_to "Destroy", item_path(item.id), method: :delete %>
+
 
   <% end %>
 

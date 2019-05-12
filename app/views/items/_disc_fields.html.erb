@@ -5,7 +5,7 @@
     <%= f.label 'Disc number' %><br>
     <%= f.number_field :number %>
     <!-- このフォームを削除する -->
-    <%= link_to_remove_association "Discを削除", f %><br><br>
+    <%= link_to_remove_association "Discを削除", f %>
     </div>
 
     <div class="songs">
@@ -14,6 +14,7 @@
       <% end %>
 
       <%= link_to_add_association "add song", f, :songs %>
+      <br><br>
     </div>
 </div>
 
